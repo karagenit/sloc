@@ -15,7 +15,9 @@ pword = gets.chomp
 
 octoclient = Octokit::Client.new(:login => uname, :password => pword)
 
-token = octoclient.create_authorization(:scopes => ["repo"], :note => "SLOC Script").attrs[:token]
+auth = octoclient.create_authorization(:scopes => ["repo"], :note => "SLOC Script")
+authid = auth.attrs[:id]
+token = auth.attrs[:token]
 
 query = Hash.new
 query['query'] = IO.read('query.json')
@@ -38,3 +40,5 @@ data = JSON.parse(http.request(request).body)
 data['data']['user']['contributedRepositories']['edges'].each do |edge|
     get_repo edge['node']['nameWithOwner']
 end
+
+octoclient.delete_authorization(authid)

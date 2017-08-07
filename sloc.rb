@@ -4,6 +4,10 @@ require "octokit"
 require "net/http"
 require "uri"
 
+totala = 0
+totald = 0
+totalc = 0
+
 print "Username: "
 uname = gets.chomp
 print "Password: "
@@ -33,6 +37,8 @@ request.body = query
 
 data = JSON.parse(http.request(request).body)
 
+printf "----------\n%-40s %-10s %-10s %-10s\n----------\n", "Repository", "Adds", "Dels", "Commits"
+
 data['data']['user']['contributedRepositories']['edges'].each do |edge|
     repo = edge['node']['nameWithOwner']
     stats = octoclient.contributors_stats(repo)
@@ -52,6 +58,11 @@ data['data']['user']['contributedRepositories']['edges'].each do |edge|
         end
     end
     printf "%-40s %-10s %-10s %-10s\n", repo, "(+#{a})", "(-#{d})", "(:#{c})"
+    totala = totala + a
+    totald = totald + d
+    totalc = totalc + c
 end
+
+printf "----------\n%-40s %-10s %-10s %-10s\n", "Total", "(+#{totala})", "(-#{totald})", "(:#{totalc})"
 
 octoclient.delete_authorization(authid)

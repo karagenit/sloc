@@ -35,20 +35,23 @@ data = JSON.parse(http.request(request).body)
 
 data['data']['user']['contributedRepositories']['edges'].each do |edge|
     repo = edge['node']['nameWithOwner']
-    puts repo
     stats = octoclient.contributors_stats(repo)
-    add = 0
+    a = 0
+    d = 0
+    c = 0
     if stats == nil
         next
     end
     stats.each do |stat|
         if stat[:author][:login] == uname
             stat[:weeks].each do |week|
-                add = add + week[:a]
+                a = a + week[:a]
+                d = d + week[:d]
+                c = c + week[:c]
             end
         end
     end
-    puts "Additions: #{add}"
+    printf "%-40s %-10s %-10s %-10s\n", repo, "(+#{a})", "(-#{d})", "(:#{c})"
 end
 
 octoclient.delete_authorization(authid)

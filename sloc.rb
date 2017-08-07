@@ -4,6 +4,10 @@ require "octokit"
 require "net/http"
 require "uri"
 
+def get_repo(repo)
+    puts repo
+end
+
 print "Username: "
 uname = gets.chomp
 print "Password: "
@@ -29,6 +33,8 @@ request['Authorization'] = "bearer #{token}"
 request['Content-type'] = "application/json"
 request.body = query
 
-repos = JSON.parse(http.request(request).body)
+data = JSON.parse(http.request(request).body)
 
-puts repos.inspect
+data['data']['user']['contributedRepositories']['edges'].each do |edge|
+    get_repo edge['node']['nameWithOwner']
+end

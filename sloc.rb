@@ -4,10 +4,6 @@ require "octokit"
 require "net/http"
 require "uri"
 
-def get_repo(repo)
-    puts repo
-end
-
 print "Username: "
 uname = gets.chomp
 print "Password: "
@@ -38,7 +34,7 @@ request.body = query
 data = JSON.parse(http.request(request).body)
 
 data['data']['user']['contributedRepositories']['edges'].each do |edge|
-    get_repo edge['node']['nameWithOwner']
+    puts edge['node']['nameWithOwner']
 end
 
 octoclient.delete_authorization(authid)

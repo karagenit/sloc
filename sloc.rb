@@ -15,6 +15,8 @@ token = octoclient.create_authorization(:scopes => ["public_repo", "user"], :not
 
 query = Hash.new
 query['query'] = IO.read('query.json')
+query['variables'] = Hash.new
+query['variables']['user'] = uname
 query = query.to_json
 
 uri = URI.parse("https://api.github.com/graphql")

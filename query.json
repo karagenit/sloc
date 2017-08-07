@@ -1,5 +1,12 @@
-query {
-    viewer {
-        name
+query($user: String!) {
+    user(login: $user) {
+        contributedRepositories(first:100) {
+            totalCount
+            edges {
+                node {
+                    nameWithOwner
+                }
+            }
+        }
     }
 }

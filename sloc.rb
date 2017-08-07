@@ -11,7 +11,7 @@ pword = gets.chomp
 
 octoclient = Octokit::Client.new(:login => uname, :password => pword)
 
-token = octoclient.create_authorization(:scopes => ["public_repo", "user"], :note => "SLOC Script").attrs[:token]
+token = octoclient.create_authorization(:scopes => ["repo"], :note => "SLOC Script").attrs[:token]
 
 query = Hash.new
 query['query'] = IO.read('query.json')

@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.0.2](https://github.com/karagenit/sloc/tree/v1.0.2) (2017-08-10)
+[Full Changelog](https://github.com/karagenit/sloc/compare/v1.0.0...v1.0.2)
+
 ## [v1.0.0](https://github.com/karagenit/sloc/tree/v1.0.0) (2017-08-10)
 **Closed issues:**
 

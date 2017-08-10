@@ -1,7 +1,6 @@
 # Change Log
 
-## [Unreleased](https://github.com/karagenit/sloc/tree/HEAD)
-
+## [v1.0.0](https://github.com/karagenit/sloc/tree/v1.0.0) (2017-08-10)
 **Closed issues:**
 
 - Rakefile [\#5](https://github.com/karagenit/sloc/issues/5)

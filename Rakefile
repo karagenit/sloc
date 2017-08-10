@@ -33,5 +33,5 @@ task :publish do
     system "git tag -a v" + vers + " -m \"\""
     system "git push origin master"
     system "git push origin v" + GithubSloc::VERSION
-    system "gem push github_fastforward-" + GithubSloc::VERSION + ".gem"
+    system "gem push github_sloc-" + GithubSloc::VERSION + ".gem"
 end

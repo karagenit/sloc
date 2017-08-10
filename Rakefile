@@ -10,7 +10,7 @@ task :build do
 end
 
 task :install do
-    sh "gem install github_sloc-" + Sloc::VERSION + ".gem"
+    sh "gem install github_sloc-" + GithubSloc::VERSION + ".gem"
 end
 
 task :clean do
@@ -23,7 +23,7 @@ task :test do
 end
 
 task :publish do
-    puts "Current Version: " + Sloc::VERSION
+    puts "Current Version: " + GithubSloc::VERSION
     print "New Version: "
     vers = STDIN.gets.chomp
     #IO.write('version.txt', vers) #TODO update version no.
@@ -32,6 +32,6 @@ task :publish do
     system "git commit -am \"Update Version\""
     system "git tag -a v" + vers + " -m \"\""
     system "git push origin master"
-    system "git push origin v" + Sloc::VERSION
-    system "gem push github_fastforward-" + Sloc::VERSION + ".gem"
+    system "git push origin v" + GithubSloc::VERSION
+    system "gem push github_fastforward-" + GithubSloc::VERSION + ".gem"
 end

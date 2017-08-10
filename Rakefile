@@ -27,6 +27,7 @@ task :publish do
     print "New Version: "
     vers = STDIN.gets.chomp
     IO.write(File.expand_path('../lib/github_sloc/version.rb', __FILE__), "module GithubSloc\n  VERSION = \"#{vers}\"\nend\n")
+    load "github_sloc/version.rb"
     sh "rake build"
     system "github_changelog_generator"
     system "git commit -am \"Update Version\""

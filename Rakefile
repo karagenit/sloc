@@ -26,7 +26,7 @@ task :publish do
     puts "Current Version: " + GithubSloc::VERSION
     print "New Version: "
     vers = STDIN.gets.chomp
-    #IO.write('version.txt', vers) #TODO update version no.
+    IO.write(File.expand_path('../lib/github_sloc/version.rb', __FILE__), "module GithubSloc\n  VERSION = \"#{vers}\"\nend\n")
     sh "rake build"
     system "github_changelog_generator"
     system "git commit -am \"Update Version\""

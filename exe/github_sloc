@@ -20,7 +20,9 @@ authid = auth.attrs[:id]
 token = auth.attrs[:token]
 
 query = Hash.new
-query['query'] = IO.read('query.json')
+path = File.expand_path('../lib/github_sloc/query.json', File.dirname(__FILE__))
+puts path
+query['query'] = IO.read(path)
 query['variables'] = Hash.new
 query['variables']['user'] = uname
 query = query.to_json
